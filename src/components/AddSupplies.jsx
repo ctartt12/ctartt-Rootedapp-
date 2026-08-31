@@ -1,37 +1,120 @@
+import { useState } from 'react';
+
+const initialForm = {
+    supplyName: '',
+    datePurchased: '',
+    supplyType: '',
+    notes: '',
+};
+
 function AddSupplies() {
-    return ( <header className="AddSupplies">
-        <h1>Add Supplies</h1>
-    
-    <form>
-<fieldset>
+    const [formData, setFormData] = useState(initialForm);
 
-   <legend>Supply Type</legend>
+    function handleChange(event) {
+        const { name, value } = event.target;
 
-   <label htmlFor="Soil">Soil:</label>
-     <input type="radio" id="Soil" name="supplyType" value="Soil" required /><br/>
+        setFormData((current) => ({
+            ...current,
+            [name]: value,
+        }));
+    }
 
-   <label htmlFor="Fertilizer">Fertilizer:</label>
-     <input type="radio" id="Fertilizer" name="supplyType" value="Fertilizer" required /><br/>
+    function handleSubmit(event) {
+        event.preventDefault();
+        console.log('Submitted supply:', formData);
+        window.history.back();
+    }
 
-   <label htmlFor="PestControl">Pest Control:</label>
-    <input type="radio" id="PestControl" name="supplyType" value="PestControl" required /><br/> 
+    return (
+        <div>
+            <header className="AddSupplies">
+                <h1>Add Supplies</h1>
+                <form onSubmit={handleSubmit}>
+                    <label htmlFor="supplyName">Supply Name:</label>
+                    <input
+                        type="text"
+                        id="supplyName"
+                        name="supplyName"
+                        value={formData.supplyName}
+                        onChange={handleChange}
+                    />
 
-    <label htmlFor="Other">Other:</label>
-     <input type="radio" id="Other" name="supplyType" value="Other" required /><br/>
+                    <label htmlFor="datePurchased">Date Purchased:</label>
+                    <input
+                        type="date"
+                        id="datePurchased"
+                        name="datePurchased"
+                        value={formData.datePurchased}
+                        onChange={handleChange}
+                    />
 
-</fieldset>
-  
-<button type="button" onClick={() => window.history.back()}>Back</button>
+                    <fieldset>
+                        <legend>Supply Type</legend>
 
+                        <label htmlFor="Soil">Soil:</label>
+                        <input
+                            type="radio"
+                            id="Soil"
+                            name="supplyType"
+                            value="Soil"
+                            checked={formData.supplyType === 'Soil'}
+                            onChange={handleChange}
+                            required
+                        />
 
-<button type="submit">Submit</button>   
+                        <label htmlFor="Fertilizer">Fertilizer:</label>
+                        <input
+                            type="radio"
+                            id="Fertilizer"
+                            name="supplyType"
+                            value="Fertilizer"
+                            checked={formData.supplyType === 'Fertilizer'}
+                            onChange={handleChange}
+                            required
+                        />
 
-</form>
+                        <label htmlFor="PestControl">Pest Control:</label>
+                        <input
+                            type="radio"
+                            id="PestControl"
+                            name="supplyType"
+                            value="PestControl"
+                            checked={formData.supplyType === 'PestControl'}
+                            onChange={handleChange}
+                            required
+                        />
 
+                        <label htmlFor="Other">Other:</label>
+                        <input
+                            type="radio"
+                            id="Other"
+                            name="supplyType"
+                            value="Other"
+                            checked={formData.supplyType === 'Other'}
+                            onChange={handleChange}
+                            required
+                        />
+                    </fieldset>
 
+                    <label htmlFor="notes">Notes:</label>
+                    <textarea
+                        id="notes"
+                        name="notes"
+                        rows="4"
+                        cols="50"
+                        value={formData.notes}
+                        onChange={handleChange}
+                    ></textarea>
 
-    </header>
+                    <button type="button" onClick={() => window.history.back()}>
+                        Back
+                    </button>
 
-)};
+                    <button type="submit">Submit</button>
+                </form>
+            </header>
+        </div>
+    );
+}
 
-export default AddSupplies
+export default AddSupplies;
