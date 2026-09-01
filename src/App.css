@@ -1,0 +1,327 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Fleur+De+Leah&display=swap');
+
+
+
+#root {
+  /* Box styling for the root element #root is the id for the base of the page css */
+  min-height: 100vh;
+  /* Ensure the root element takes up the full viewport height */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+}
+
+.hero-content {
+  /* Box styling for the hero content section THE BUILDBOARD THE ATTENTION GRABBER */
+  background-image: url('./assets/magnific_on-the-right-corner-add-a_iGYr5663uK.jpeg');
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 100px;
+  box-sizing: border-box;
+
+}
+
+.welcome-sub {
+  /* Box styling for the welcome subheading(WELCOME TO) */
+  font-size: 40px;
+  font-style: Normal;
+  font-family: 'Dancing Script', cursive;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.6),
+    0 0 15px rgba(23, 44, 29, 0.8),
+    0 0 25px rgba(23, 44, 29, 0.4);
+  font-weight: 700;
+  color: #012901;
+  margin-bottom: 60px;
+
+}
+
+.main-title {
+  /* Box styling for the main title (ROOTED) */
+  font-family: "Fleur De Leah", cursive;
+  font-weight: 700;
+  font-size: 100px;
+  font-style: Bold;
+  color: #012901;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.6),
+    0 0 15px rgba(23, 44, 29, 0.8),
+    0 0 25px rgba(23, 44, 29, 0.4);
+  margin-bottom: 20px;
+
+}
+
+.card-container {
+  /* Box styling for the card container */
+  display: flex;
+  flex-wrap: wrap;
+  background: fixed;
+  margin-top: 70px;
+  align-items: center;
+  /*align means vertical aligned items is for horizontal aligment*/
+  justify-content: center;
+  /*justify means horizontal aligned items is for vertical aligment*/
+  gap: 70px;
+  flex-wrap: wrap;
+
+}
+
+.action-cards {
+  /* Box styling for the individual cards */
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 20px;
+  padding: 20px;
+  min-height: 45vh;
+  font-family: Georgia, serif;
+}
+
+.addplants,
+.addsupplies {
+  background-image: url('./assets/border-fro-fresh-green-leaves.jpg');
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  min-height: 100vh;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 3rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.about h1,
+.myplants h1,
+.MySupplies h1,
+.addplants h1,
+.addsupplies h1 {
+  font-family: "Fleur De Leah", cursive;
+  font-size: 100px;
+  font-style: normal;
+  font-weight: 400;
+  color: #022b02;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.6),
+    0 0 15px rgba(23, 44, 29, 0.8),
+    0 0 25px rgba(23, 44, 29, 0.4);
+  margin-bottom: 20px;
+  margin: 5%;
+}
+
+.form-card-container {
+  background-color: #ffffff;
+  border-radius: 20px;
+  width: 100%;
+  max-width: 840px;
+  box-shadow: 0 4px rgba(0, 0, 0, 03);
+  box-sizing: content-box;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(220px, 1fr));
+  gap: 1.25rem 1.5rem;
+}
+
+.input-card {
+  border: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.input-card label {
+  display: flex;
+  font-size: medium;
+  font-weight: 600;
+  color: #022b02;
+}
+
+.input-card input,
+.input-card select,
+.input-card textarea {
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: 8px;
+  border: 1px solid #e1e6e2;
+  background-color: #fafbfa;
+  font-size: 1rem;
+  color: #022b02;
+  font-family: inherit;
+  box-sizing: border-box;
+  outline: none;
+  transition: border-color#022b02;
+}
+
+.notes-card {
+  grid-column: 1 / -1;
+}
+
+.input-card fieldset {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 0.75rem 1.25rem;
+  padding: 0.75rem;
+  border: 1px solid #e1e6e2;
+  border-radius: 10px;
+  background: #fafbfa;
+}
+
+.input-card fieldset legend {
+  font-weight: 600;
+  color: #022b02;
+  padding: 0 0.4rem;
+}
+
+.input-card fieldset label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 500;
+}
+
+.input-card fieldset input[type="radio"] {
+  width: auto;
+  margin: 0;
+  accent-color: #233d2a;
+}
+
+.form-actions {
+  grid-column: 1 / -1;
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.form-actions button {
+  padding: 0.65rem 1.5rem;
+  border: none;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  background-color: #233d2a;
+  color: #ffffff;
+}
+
+
+
+.NavMenu {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 1.25rem;
+  background: #6aa247;
+  padding: 12px 20px;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.nav-link {
+  color: #022b02;
+  text-decoration: none;
+  font-weight: 600;
+  font-family: Georgia, serif;
+}
+
+.nav-link:hover,
+.nav-link.active {
+  color: #a0e968;
+  font-weight: bold;
+}
+
+.MySupplies,
+.myplants {
+  background: #e1e6e2;
+  background-size: cover;
+  font-style: normal;
+  color: #012901;
+  min-height: 100vh;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 3rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+
+}
+
+.MySupplies table,
+.MySupplies-table,
+.myplants table,
+.myplants-table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+
+
+
+.MySupplies-table td,
+.MySupplies-table th,
+.MySupplies th,
+.MySupplies td,
+.myplants th,
+.myplants td,
+.myplants-table th,
+.myplants-table td {
+  padding: 12px 10px;
+  text-align: left;
+  border-bottom: 1px solid #2e560b;
+  vertical-align: top;
+}
+
+.delete-btn,
+.delete-button {
+  background-color: #022b02;
+  color: #f5f9f5;
+  border: 1px solid #064d16;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+.delete-btn:hover,
+.delete-button:hover {
+  background-color: yellowgreen;
+  color: white;
+  opacity: 0.95;
+}
+
+.about {
+  background-image: url('./assets/ABOUT.jpg');
+  background-size: cover;
+  background-position: center bottom;
+  background-repeat: no-repeat;
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.about h1 {
+  margin-top: 35px;
+  margin-bottom: 30px;
+  transform: translateY(8px);
+}
+
+.about p {
+  max-width: 1200px;
+  margin-top: 35px;
+  margin: 1.25rem;
+  line-height: 1.7;
+  font-size: 1.1rem;
+  color: #012901;
+}
