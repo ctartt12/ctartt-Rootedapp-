@@ -4,9 +4,15 @@ function MySupplies() {
     const [supplies, setSupplies] = useState([])
 
     useEffect(() => {
-        const savedSupplies = JSON.parse(localStorage.getItem("mySupplies")) || []
+        const savedSupplies = JSON.parse(localStorage.getItem("MySupplies")) || []
         setSupplies(savedSupplies)
     }, [])
+
+    const handleDelete = (id) => {
+        const updatedSupplies = supplies.filter((supply) => supply.id !== id)
+        setSupplies(updatedSupplies)
+        localStorage.setItem("MySupplies", JSON.stringify(updatedSupplies))
+    }
 
     return (
         <header className="MySupplies">
@@ -22,6 +28,7 @@ function MySupplies() {
                             <th>Date Purchased</th>
                             <th>Supply Type</th>
                             <th>Notes</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -31,6 +38,11 @@ function MySupplies() {
                                 <td>{supply.datePurchased}</td>
                                 <td>{supply.supplyType}</td>
                                 <td>{supply.notes}</td>
+                                <td>
+                                    <button className="delete-btn" onClick={() => handleDelete(supply.id)}>
+                                        Delete
+                                    </button>
+                                </td>
                             </tr>
                         ))}
                     </tbody>

@@ -92,6 +92,9 @@
   justify-content: center;
 }
 
+
+.myplants h1,
+.MySupplies h1,
 .addplants h1,
 .addsupplies h1 {
   font-family: "Fleur De Leah", cursive;
@@ -223,4 +226,63 @@
 .nav-link.active {
   color: #ffffff;
   font-weight: bold;
+}
+
+.MySupplies,
+.myplants {
+  background: #e1e6e2;
+  background-size: cover;
+  font-style: normal;
+  color: #012901;
+  min-height: 100vh;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 3rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+
+}
+
+.MySupplies table,
+.MySupplies-table,
+.myplants table,
+.myplants-table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+
+
+
+.MySupplies-table td,
+.MySupplies-table th,
+.MySupplies th,
+.MySupplies td,
+.myplants th,
+.myplants td,
+.myplants-table th,
+.myplants-table td {
+  padding: 12px 10px;
+  text-align: left;
+  border-bottom: 1px solid #2e560b;
+  vertical-align: top;
+}
+
+.delete-btn,
+.delete-button {
+  background-color: #022b02;
+  color: #f5f9f5;
+  border: 1px solid #064d16;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+.delete-btn:hover,
+.delete-button:hover {
+  background-color: yellowgreen;
+  color: white;
+  opacity: 0.95;
 }

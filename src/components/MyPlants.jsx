@@ -5,13 +5,15 @@ function MyPlants() {
     const [plants, setPlants] = useState([])
 
     useEffect(() => {
-
-        const savedPlants =
-            JSON.parse(localStorage.getItem("myPlants")) || []
-
+        const savedPlants = JSON.parse(localStorage.getItem("myPlants")) || []
         setPlants(savedPlants)
-
     }, [])
+
+    const handleDelete = (id) => {
+        const updatedPlants = plants.filter((plant) => plant.id !== id)
+        setPlants(updatedPlants)
+        localStorage.setItem("myPlants", JSON.stringify(updatedPlants))
+    }
 
     return (
         <div>
@@ -36,9 +38,11 @@ function MyPlants() {
                                 <th>Light</th>
                                 <th>Soil Type</th>
                                 <th>Notes</th>
-
+                                <th>Action</th>
                             </tr>
                         </thead>
+
+
                         <tbody>
 
                             {plants.map(plant => (
@@ -111,6 +115,11 @@ function MyPlants() {
                                     </td>
                                     <td>
                                         {plant.notes || ""}
+                                    </td>
+                                    <td>
+                                        <button className="delete-btn" onClick={() => handleDelete(plant.id)}>
+                                            Delete
+                                        </button>
                                     </td>
 
                                 </tr>
