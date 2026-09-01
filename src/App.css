@@ -76,8 +76,12 @@
   font-family: Georgia, serif;
 }
 
-.addplants {
-  background: #F2E8D8;
+.addplants,
+.addsupplies {
+  background-image: url('./assets/border-fro-fresh-green-leaves.jpg');
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
   min-height: 100vh;
   width: 100%;
   box-sizing: border-box;
@@ -85,16 +89,17 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: center;
 }
 
-.addplants h1 {
+.addplants h1,
+.addsupplies h1 {
   font-family: "Fleur De Leah", cursive;
   font-size: 100px;
   font-style: normal;
   font-weight: 400;
   color: #022b02;
-
+  margin: 5%;
 }
 
 .form-card-container {
@@ -146,6 +151,35 @@
   grid-column: 1 / -1;
 }
 
+.input-card fieldset {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 0.75rem 1.25rem;
+  padding: 0.75rem;
+  border: 1px solid #e1e6e2;
+  border-radius: 10px;
+  background: #fafbfa;
+}
+
+.input-card fieldset legend {
+  font-weight: 600;
+  color: #022b02;
+  padding: 0 0.4rem;
+}
+
+.input-card fieldset label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 500;
+}
+
+.input-card fieldset input[type="radio"] {
+  width: auto;
+  margin: 0;
+  accent-color: #233d2a;
+}
 
 .form-actions {
   grid-column: 1 / -1;

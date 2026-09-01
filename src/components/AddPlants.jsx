@@ -1,9 +1,10 @@
 import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 
-const apiKey = import.meta.env.VITE_TREFLE_API_KEY || 'your_token_here';
+const apiKey = import.meta.env.VITE_TREFLE_API_KEY
 
 const profile = {
-    common_name: "",
+    scientific_name: "",
     dateArrival: "",
     datePlanted: "",
     plantLocation: "",
@@ -13,9 +14,11 @@ const profile = {
 }
 
 function AddPlants() {
+    const navigate = useNavigate()
+    const [selectedPlant, setSelectedPlant] = useState(null)
 
     // todo:state 
-    const [common_name, setcommon_name] = useState(profile) //useState is the changes in real time
+    const [scientific_name, setscientific_name] = useState(profile) //useState is the changes in real time
     const [loading, setLoading] = useState(false);
 
 
@@ -23,7 +26,7 @@ function AddPlants() {
         const { name, value } = event.target //event.target triggers usestate and targets what being manipulated 
         console.log(value)
 
-        setcommon_name(current => ({
+        setscientific_name(current => ({
             ...current,
             [name]: value,
         }))
@@ -31,7 +34,7 @@ function AddPlants() {
 
     // todo:search
     async function searchPlantAPI() {
-        if (!common_name.common_name) {
+        if (!scientific_name.scientific_name) {
             alert("Please type in a name so we can help with your search!");
             return;
         }
@@ -39,7 +42,7 @@ function AddPlants() {
         setLoading(true);
 
         try {
-            const url = `/api/plants?token=${apiKey}&q=${encodeURIComponent(common_name.common_name)}`;
+            const url = `/api/plants/search?token=${apiKey}&q=${encodeURIComponent(scientific_name.scientific_name)}`;
             console.log("Fetching from API endpoint securely...");
 
             const response = await fetch(url);
@@ -51,10 +54,10 @@ function AddPlants() {
 
                 console.log("Raw plants array from API:", data.data);
 
-                const userSearch = common_name.common_name.toLowerCase();
+                const userSearch = scientific_name.scientific_name.toLowerCase();
 
                 const smartMatch = data.data.find(plant => {
-                    const commonName = plant.common_name ? plant.common_name.toLowerCase() : "";
+                    const commonName = plant.scientific_name ? plant.scientific_name.toLowerCase() : "";
                     const scientificName = plant.scientific_name ? plant.scientific_name.toLowerCase() : "";
                     return commonName.includes(userSearch) || scientificName.includes(userSearch);
 
@@ -62,13 +65,14 @@ function AddPlants() {
 
                 const topResult = smartMatch || data.data[0];
 
-                setcommon_name(current => ({
+                setSelectedPlant(topResult)
+
+                setscientific_name(current => ({
                     ...current,
-                    common_name: topResult.common_name,
-                    notes: `Watering recommendation from API: ${topResult.watering || 'Not specified'}.`
+                    scientific_name: topResult.scientific_name,
                 }));
 
-                alert(`Found: ${topResult.common_name}! Autofilling matching profile parameters`);
+                alert(`Found: ${topResult.scientific_name}! Autofilling matching profile parameters`);
             } else {
                 alert("No exact matches found for that plant name.");
             }
@@ -85,8 +89,50 @@ function AddPlants() {
     function handleSubmit(event) {
         event.preventDefault()
 
-        console.log("Form data saved to local state object", common_name)
-        console.log("API key loaded:", apiKey)
+        if (!selectedPlant) {
+            alert("Please search for and select a plant first.")
+            return
+        }
+
+        const newPlant = {
+            ...scientific_name,
+
+            // Information from Trefle
+            trefleId: selectedPlant.id,
+            common_name: selectedPlant.common_name,
+            scientific_name: selectedPlant.scientific_name,
+            slug: selectedPlant.slug,
+            image_url: selectedPlant.image_url,
+
+            // Care information (with fallbacks if not available)
+            watering: selectedPlant.watering || "Not specified",
+            light: selectedPlant.light || "Not specified",
+            soil_type: selectedPlant.soil_type || "Not specified",
+
+            // Unique ID for this plant in your collection helps to make sure two id are not the same
+            id: crypto.randomUUID()
+        }
+
+        console.log("Adding plant:", newPlant)
+
+        // Get existing plants
+        const existingPlants =
+            JSON.parse(localStorage.getItem("myPlants")) || []
+
+        // Add this plant
+        const updatedPlants = [
+            ...existingPlants,
+            newPlant
+        ]
+
+        // Save
+        localStorage.setItem(
+            "myPlants",
+            JSON.stringify(updatedPlants)
+        )
+
+        // Go to My Plants
+        navigate("/myplants")
     }
 
     return (
@@ -97,16 +143,16 @@ function AddPlants() {
 
                     <div className="form-grid">
                         <div className="input-card">
-                            <label htmlFor="common_name">Plant Name:</label>
+                            <label htmlFor="scientific_name">Plant Name:</label>
                             <div className="search-input-wrapper" style={{ display: 'flex', gap: '8px' }}>
-                                <input type="text" id="common_name" name="common_name" value={common_name.common_name} required onChange={handleChange} />
+                                <input type="text" id="scientific_name" name="scientific_name" value={scientific_name.scientific_name} placeholder='Enter Scientific Name...' required onChange={handleChange} />
 
                                 <button
                                     type="button"
                                     className="btn-search"
                                     onClick={searchPlantAPI}
                                     disabled={loading}
-                                    style={{ padding: '0 12px', background: '#022b2', color: 'white', border: 'none', borderRadius: '20px', cursor: 'pointer' }}
+                                    style={{ padding: '0 12px', background: '#233d2a', color: 'white', border: 'none', borderRadius: '20px', cursor: 'pointer' }}
 
                                 >
                                     {loading ? "..." : "🔍"}
