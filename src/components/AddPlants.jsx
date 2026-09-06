@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 const apiKey = import.meta.env.VITE_TREFLE_API_KEY
+const apiBaseUrl = import.meta.env.VITE_TREFLE_API_URL || (import.meta.env.DEV ? "/api" : "https://trefle.io/api/v1")
 
 const profile = {
     scientific_name: "",
@@ -42,10 +43,17 @@ function AddPlants() {
         setLoading(true);
 
         try {
-            const url = `/api/plants/search?token=${apiKey}&q=${encodeURIComponent(scientific_name.scientific_name)}`;
-            console.log("Fetching from API endpoint securely...");
+            const params = new URLSearchParams({
+                token: apiKey,
+                q: scientific_name.scientific_name,
+            });
+            const url = `${apiBaseUrl}/plants/search?${params}`;
+            console.log("Fetching from Trefle API...");
 
             const response = await fetch(url);
+            if (!response.ok) {
+                throw new Error(`Trefle API returned ${response.status}`);
+            }
             const data = await response.json();
 
             console.log("API Query Results received:", data);

@@ -1,5 +1,3 @@
-import AddPlants from './AddPlants';
-import AddSupplies from './AddSupplies';
 import { NavLink } from 'react-router-dom';
 
  function HomePage() {
