@@ -22,21 +22,37 @@ NavMenu(Home, About, MyPlants, MySupplies)
 # React + Vite
 >>>>>>> 07f119460c5ef181b85856600606185bea783f82
 
-Exspected Results: React Router update URL smoothly without reloading the page.
+Manual Testing 
+TEST CASE 
+React Router updates the URL
+EXPESCTED RESULTS 
+React Router updates the URL smoothly without reloading the page.
+STATUS 
+pass
 
-Status:Pass
+TEST CASE
+Plant name input generates the correct plant match
+EXPESCTED RESULTS
+The plant name matches the user's input, and the correct plant information is rendered on My Plants for the plant profile and user information.
+STATUS 
+pass
 
-Test case:Input for plant name needs to generate plants correct match
-exspected results: Plant name matches the users input correct info is rendered to myplants for the plants profile and user info
-status: pass
-
-Test case: React Routes work Add page renders to mypages
-
-testcase: add pages renders and submits data to my pages.
-
-status:pass
+TEST CASE 
+Add Plants page submits filtered data from API
+EXPESCTED RESULTS
+The Add Plants page accepts the user's entry for plant API data is correctly filterd into My Plants when form is submitted.
+STATUS
+pass
 
 
+Debugging 
+ISSUE
+API CORS issue prevented the application from accessing plant data from API
+RESOLUTION
+Investigated the browser console and network errors in DEV TOOLS CORS error was identified.
+API browser url needed to be adjusted I changed the parameters and how the computer accessed the data. The API was then retested and the application to confirm the correct data was being retrieved correctly. 
+STATUS 
+Resolved 
 
 
 
