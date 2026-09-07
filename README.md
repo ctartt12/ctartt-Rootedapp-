@@ -6,22 +6,6 @@ NavMenu(Home, About, MyPlants, MySupplies)
 <img width="4284" height="5712" alt="Wire frame for rooted " src="https://github.com/user-attachments/assets/88709042-f2e6-4179-89dc-618b083eae13" />
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-# React + Vite
->>>>>>> 07f119460c5ef181b85856600606185bea783f82
-
 Manual Testing 
 TEST CASE 
 React Router updates the URL
